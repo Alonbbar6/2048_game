@@ -1,0 +1,222 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: #faf8ef;
+    color: #776e65;
+    line-height: 1.4;
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 80px;
+    font-weight: 700;
+    color: #776e65;
+    margin: 0;
+    line-height: 1;
+}
+
+.scores {
+    display: flex;
+    gap: 10px;
+}
+
+.score-box {
+    background: #bbada0;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 3px;
+    text-align: center;
+    min-width: 100px;
+}
+
+.score-title {
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+.score {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.game-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+button {
+    background: #8f7a66;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+button:hover {
+    background: #9f8b77;
+    transform: translateY(-2px);
+}
+
+.game-container {
+    position: relative;
+    background: #bbada0;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 15px;
+    position: relative;
+}
+
+.grid-cell {
+    background: rgba(238, 228, 218, 0.35);
+    border-radius: 3px;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    font-weight: 700;
+    position: relative;
+    transition: all 0.1s ease-in-out;
+}
+
+.tile {
+    position: absolute;
+    width: calc(25% - 15px);
+    height: 0;
+    padding-bottom: calc(25% - 15px);
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    font-weight: 700;
+    transition: all 0.1s ease-in-out;
+    z-index: 10;
+}
+
+.tile-2 { background: #eee4da; }
+.tile-4 { background: #ede0c8; }
+.tile-8 { color: #f9f6f2; background: #f2b179; }
+.tile-16 { color: #f9f6f2; background: #f59563; }
+.tile-32 { color: #f9f6f2; background: #f67c5f; }
+.tile-64 { color: #f9f6f2; background: #f65e3b; }
+.tile-128 { color: #f9f6f2; background: #edcf72; font-size: 30px; }
+.tile-256 { color: #f9f6f2; background: #edcc61; font-size: 30px; }
+.tile-512 { color: #f9f6f2; background: #edc850; font-size: 30px; }
+.tile-1024 { color: #f9f6f2; background: #edc53f; font-size: 25px; }
+.tile-2048 { color: #f9f6f2; background: #edc22e; font-size: 25px; }
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pop {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.new-tile {
+    animation: appear 0.2s ease-in-out;
+}
+
+.merged-tile {
+    animation: pop 0.15s ease-in-out;
+    z-index: 20;
+}
+
+.game-over {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(238, 228, 218, 0.73);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    z-index: 100;
+    display: none;
+}
+
+.game-over h2 {
+    font-size: 60px;
+    margin-bottom: 20px;
+    color: #776e65;
+}
+
+.game-explanation {
+    color: #776e65;
+    text-align: center;
+    margin-top: 30px;
+    line-height: 1.6;
+}
+
+@media (max-width: 520px) {
+    .container {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 60px;
+    }
+    
+    .score-box {
+        min-width: 80px;
+        padding: 5px 10px;
+    }
+    
+    .score {
+        font-size: 20px;
+    }
+    
+    .tile {
+        font-size: 25px;
+    }
+    
+    .tile-128, .tile-256, .tile-512 {
+        font-size: 22px;
+    }
+    
+    .tile-1024, .tile-2048 {
+        font-size: 18px;
+    }
+}
